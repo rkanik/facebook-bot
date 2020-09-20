@@ -1,0 +1,19 @@
+{
+    "name": "facebook-bot",
+    "version": "1.0.0",
+    "description": "",
+    "author": "",
+    "scripts": {
+        "dev": "nodemon --exec npm start",
+        "start": "node src/server"
+    },
+    "main": "src/server",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "firebase": "^7.21.0",
+        "puppeteer": "^5.3.0"
+    },
+    "devDependencies": {},
+    "keywords": [],
+    "license": "ISC"
+}
