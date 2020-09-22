@@ -1,0 +1,28 @@
+.masonry {
+    column-gap: 1rem;
+    &[data-col="4"] {
+        column-count: 4;
+    }
+
+    &__item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+html.overflow-y-hidden,
+body[data-dialog-open] {
+    .v-application--wrap {
+        transition: filter 200ms ease-in-out;
+        filter: blur(10px);
+    }
+}
+body[data-dialog-close] {
+    .v-application--wrap {
+        filter: blur(0px);
+    }
+}

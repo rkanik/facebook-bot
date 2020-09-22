@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as api from '../api/api'
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
@@ -29,5 +30,6 @@ export default new Vuex.Store({
         }
     },
     modules: {
-    }
+    },
+    plugins: [createPersistedState()],
 })

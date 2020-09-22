@@ -1,0 +1,116 @@
+<template>
+	<div class="create-task">
+		<v-card>
+			<v-card-title>User Profile</v-card-title>
+			<v-card-subtitle>Please fill up the form properly and then click create to create a task</v-card-subtitle>
+			<v-card-text>
+				<v-stepper v-model="e6" vertical dense>
+					<v-stepper-step :complete="e6 > 1" step="1">
+						Start create your task
+						<small>Fill up the forms carefully</small>
+					</v-stepper-step>
+
+					<v-stepper-content step="1">
+						<v-form ref="step1" class="py-1">
+							<v-select
+								:items="taskTypes"
+								v-bind="defBind"
+								v-model="task.type"
+								name="task-type"
+								label="Task Type"
+							></v-select>
+							<v-text-field v-bind="defBind" v-model="task.name" name="task-name" label="Task Name"></v-text-field>
+
+							<v-textarea
+								rows="3"
+								row-height="25"
+								v-bind="defBind"
+								v-model="task.description"
+								name="task-description"
+								label="Task Description (Optional)"
+							></v-textarea>
+						</v-form>
+						<v-btn color="primary" @click="e6 = 2">
+							<v-icon left>{{$mdi.down}}</v-icon>Next
+						</v-btn>
+					</v-stepper-content>
+
+					<v-stepper-step :complete="e6 > 2" step="2">Configure analytics for this app</v-stepper-step>
+
+					<v-stepper-content step="2">
+						<v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
+						<v-btn color="primary" @click="e6 = 3">Continue</v-btn>
+						<v-btn text>Cancel</v-btn>
+					</v-stepper-content>
+
+					<v-stepper-step :complete="e6 > 3" step="3">Select an ad format and name ad unit</v-stepper-step>
+
+					<v-stepper-content step="3">
+						<v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
+						<v-btn color="primary" @click="e6 = 4">Continue</v-btn>
+						<v-btn text>Cancel</v-btn>
+					</v-stepper-content>
+
+					<v-stepper-step step="4">View setup instructions</v-stepper-step>
+					<v-stepper-content step="4">
+						<v-card color="grey lighten-1" class="mb-12" height="200px"></v-card>
+						<v-btn color="primary" @click="e6 = 1">Continue</v-btn>
+						<v-btn text>Cancel</v-btn>
+					</v-stepper-content>
+				</v-stepper>
+			</v-card-text>
+			<v-card-actions>
+				<v-spacer></v-spacer>
+				<v-btn color="red darken-1" text @click="$emit('close')">Close</v-btn>
+				<v-btn color="blue darken-1" text @click="$emit('create')">Create</v-btn>
+			</v-card-actions>
+		</v-card>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'CreateTask',
+	data: () => ({
+		e6: 1,
+		defBind: {
+			dense: true,
+			outlined: true,
+			'hide-details': true,
+			class: {
+				'mb-3': true
+			}
+		},
+		taskTypes: [
+			{
+				text: 'Post On Group',
+				value: 'POST_ON_GROUP'
+			},
+			{
+				text: 'Send Message',
+				value: 'SEND_MESSAGE'
+			}
+		],
+		task: {
+			name: '',
+			type: 'POST_ON_GROUP',
+			triggerAt: '',
+			groups: [
+				{
+					name: '',
+					link: ''
+				}
+			],
+			post: '',
+			triggerOnce: true,
+			running: false,
+			done: false
+		}
+	}),
+}
+</script>
+
+<style lang='scss' scoped>
+	.create-task {
+	}
+</style>
